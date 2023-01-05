@@ -1,6 +1,18 @@
 // GET REQUEST
-function getTodos() {
-  console.log("GET Request");
+async function getTodos() {
+  try {
+    const response = await axios({
+      method: "get",
+      url: "https://jsonplaceholder.typicode.com/todos",
+      params: {
+        _limit: 5,
+      },
+    });
+    const data = response.data;
+    showOutput(response);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // POST REQUEST
