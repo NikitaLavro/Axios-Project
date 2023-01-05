@@ -30,8 +30,19 @@ async function addTodo() {
 }
 
 // PUT/PATCH REQUEST
-function updateTodo() {
-  console.log("PUT/PATCH Request");
+async function updateTodo() {
+  try {
+    const response = await axios.patch(
+      "https://jsonplaceholder.typicode.com/todos/1",
+      {
+        title: "Updated Todo",
+        completed: true,
+      }
+    );
+    showOutput(response);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // DELETE REQUEST
