@@ -46,8 +46,15 @@ async function updateTodo() {
 }
 
 // DELETE REQUEST
-function removeTodo() {
-  console.log("DELETE Request");
+async function removeTodo() {
+  try {
+    const response = await axios.delete(
+      "https://jsonplaceholder.typicode.com/todos/1"
+    );
+    showOutput(response);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // SIMULTANEOUS DATA
