@@ -14,8 +14,19 @@ async function getTodos() {
 }
 
 // POST REQUEST
-function addTodo() {
-  console.log("POST Request");
+async function addTodo() {
+  try {
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/todos",
+      {
+        title: "New Todo",
+        completed: false,
+      }
+    );
+    showOutput(response);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // PUT/PATCH REQUEST
