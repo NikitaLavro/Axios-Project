@@ -1,14 +1,12 @@
 // GET REQUEST
 async function getTodos() {
   try {
-    const response = await axios({
-      method: "get",
-      url: "https://jsonplaceholder.typicode.com/todos",
-      params: {
-        _limit: 5,
-      },
-    });
-    const data = response.data;
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/todos",
+      {
+        params: { _limit: 5 },
+      }
+    );
     showOutput(response);
   } catch (error) {
     console.log(error);
