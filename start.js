@@ -48,7 +48,7 @@ async function updateTodo() {
 // DELETE REQUEST
 async function removeTodo() {
   try {
-    const response = await axios.delete(
+    const response = await axios.patch(
       "https://jsonplaceholder.typicode.com/todos/1"
     );
     showOutput(response);
@@ -58,8 +58,17 @@ async function removeTodo() {
 }
 
 // SIMULTANEOUS DATA
-function getData() {
-  console.log("Simultaneous Request");
+async function getData() {
+  try {
+    await axios
+      .all([
+        axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5"),
+        axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5"),
+      ])
+      .then(axios.spread((todos, posts) => showOutput(posts)));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // CUSTOM HEADERS
