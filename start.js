@@ -72,8 +72,27 @@ async function getData() {
 }
 
 // CUSTOM HEADERS
-function customHeaders() {
-  console.log("Custom Headers");
+async function customHeaders() {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "sometoken",
+      },
+    };
+
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/todos",
+      {
+        title: "New Todo",
+        completed: false,
+      },
+      config
+    );
+    showOutput(response);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // TRANSFORMING REQUESTS & RESPONSES
