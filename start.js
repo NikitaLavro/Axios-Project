@@ -9,6 +9,7 @@ async function getTodos() {
       "https://jsonplaceholder.typicode.com/todos",
       {
         params: { _limit: 5 },
+        timeout: 5000,
       }
     );
     showOutput(response);
