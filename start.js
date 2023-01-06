@@ -117,8 +117,28 @@ function transformResponse() {
 }
 
 // ERROR HANDLING
-function errorHandling() {
-  console.log("Error Handling");
+async function errorHandling() {
+  try {
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/todos123141",
+      {
+        params: { _limit: 5 },
+      }
+    );
+    showOutput(response);
+  } catch (err) {
+    if (err.response) {
+      console.log(err.response.data);
+      console.log(err.response.status);
+      console.log(err.response.headers);
+    }
+
+    if (err.response.status === 404) {
+      alert("Error: Page Not Found");
+    } else {
+      alert(`${err.message}`);
+    }
+  }
 }
 
 // CANCEL TOKEN
